@@ -2,23 +2,29 @@
 import { initiateUserControlledWalletsClient } from '@circle-fin/user-controlled-wallets';
 import crypto from 'crypto';
 
-const client = initiateUserControlledWalletsClient({
-  apiKey: process.env.CIRCLE_API_KEY || 'mock_api_key',
-});
+const apiKey = process.env.CIRCLE_API_KEY || 'mock_api_key';
+// SDK requires strictly: "TEST_API_KEY:id:secret"
+const isMockKey = apiKey === 'mock_api_key' || !apiKey.match(/^(?:TEST_)?API_KEY:[^:]+:[^:]+$/);
+
+let client: any = null;
+if (!isMockKey) {
+  client = initiateUserControlledWalletsClient({ apiKey });
+}
 
 // Assuming a hackathon mock if keys are not perfectly valid
 export const CircleWalletsClient = {
   async createUser(userId: string) {
-    if (process.env.CIRCLE_API_KEY === 'mock_api_key') return { data: { userId } };
+    if (isMockKey) return { data: { userId } };
     return client.createUser({ userId });
   },
 
   async createUserToken(userId: string) {
-    if (process.env.CIRCLE_API_KEY === 'mock_api_key') return { data: { userToken: 'mockToken', encryptionKey: 'mockKey' } };
+    if (isMockKey) return { data: { userToken: 'mockToken', encryptionKey: 'mockKey' } };
     return client.createUserToken({ userId });
   },
 
   async createWallet(userId: string) {
+    if (isMockKey) return { data: { wallets: [{ id: crypto.randomUUID() }] } };
     return client.createWallets({
       idempotencyKey: crypto.randomUUID(),
       userId,
@@ -27,7 +33,7 @@ export const CircleWalletsClient = {
   },
 
   async getWalletBalance(walletId: string) {
-    if (process.env.CIRCLE_API_KEY === 'mock_api_key') return { data: { tokenBalances: [{ token: { symbol: 'USDC' }, amount: '1000.00' }] } };
+    if (isMockKey) return { data: { tokenBalances: [{ token: { symbol: 'USDC' }, amount: '1000.00' }] } };
     return client.getWalletTokenBalance({ walletId });
   },
 
@@ -37,7 +43,7 @@ export const CircleWalletsClient = {
     abiFunctionSignature: string;
     abiParameters: (string | number)[];
   }) {
-    if (process.env.CIRCLE_API_KEY === 'mock_api_key') {
+    if (isMockKey) {
       console.log(`[MOCK] Executed contract txn: ${params.abiFunctionSignature} on ${params.contractAddress}`);
       return `0xmocktxhash_${crypto.randomUUID().slice(0, 8)}`;
     }

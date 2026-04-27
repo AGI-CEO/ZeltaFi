@@ -141,6 +141,8 @@ export async function createMockUser(params: { depositAmountUsdc: number, riskTo
     currentApy: 0,
     riskTolerance: params.riskTolerance,
     agentActive: true,
+    zeltaBalance: 5000,
+    zeltaStaked: 2500,
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
   };

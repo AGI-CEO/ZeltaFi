@@ -1,0 +1,510 @@
+{
+  "users": {
+    "bc45d044-5ee9-485e-9f4b-d857aca1d6cc": {
+      "id": "bc45d044-5ee9-485e-9f4b-d857aca1d6cc",
+      "circleUserId": "b900cfa0-06df-4691-9198-2e3beb938146",
+      "walletId": "ecf95965-4bb2-4982-9763-2f0a1fa05114",
+      "walletAddress": "0xmockaddress",
+      "depositAmountUsdc": 1000,
+      "currentProtocol": "idle",
+      "currentApy": 0,
+      "riskTolerance": "aggressive",
+      "agentActive": true,
+      "zeltaBalance": 5000,
+      "zeltaStaked": 2500,
+      "createdAt": "2026-04-24T18:19:40.068Z",
+      "updatedAt": "2026-04-24T18:19:40.068Z"
+    },
+    "demo-user": {
+      "id": "demo-user",
+      "circleUserId": "84b10f3f-3e11-4464-8652-2595edd3cc43",
+      "walletId": "d75edf7e-5bbf-4401-bd0f-57eb0e302586",
+      "walletAddress": "0xmockaddress",
+      "depositAmountUsdc": 1000,
+      "currentProtocol": "aave",
+      "currentApy": 687,
+      "riskTolerance": "balanced",
+      "agentActive": true,
+      "zeltaBalance": 5000,
+      "zeltaStaked": 2500,
+      "createdAt": "2026-04-24T18:20:38.839Z",
+      "updatedAt": "2026-04-24T18:20:39.768Z"
+    }
+  },
+  "cycles": [
+    {
+      "id": "84a2523a-d69c-423e-b5dd-a953e3ea04f2",
+      "userId": "demo-user",
+      "startedAt": "2026-04-24T18:20:38.839Z",
+      "phase": "idle",
+      "marketIntelligence": {
+        "yields": [
+          {
+            "protocol": "aave",
+            "asset": "USDC",
+            "chain": "base",
+            "supplyApyBps": 850,
+            "tvlUsd": 0,
+            "utilizationRate": 0,
+            "queryCostUsdc": 0.001,
+            "arcTxHash": "0xmockx402hash_fallback_1777054838897",
+            "queriedAt": "2026-04-24T18:20:38.906Z"
+          },
+          {
+            "protocol": "morpho",
+            "asset": "USDC",
+            "chain": "base",
+            "supplyApyBps": 443,
+            "tvlUsd": 0,
+            "utilizationRate": 0,
+            "queryCostUsdc": 0.001,
+            "arcTxHash": "0xmockx402hash_fallback_1777054838923",
+            "queriedAt": "2026-04-24T18:20:38.926Z"
+          },
+          {
+            "protocol": "moonwell",
+            "asset": "USDC",
+            "chain": "base",
+            "supplyApyBps": 750,
+            "tvlUsd": 0,
+            "utilizationRate": 0,
+            "queryCostUsdc": 0.001,
+            "arcTxHash": "0xmockx402hash_fallback_1777054839011",
+            "queriedAt": "2026-04-24T18:20:39.279Z"
+          }
+        ],
+        "signals": [
+          {
+            "type": "opportunity",
+            "protocol": "aave",
+            "signal": "4.1% yield spread detected between aave and morpho. Rebalancing opportunity exists if risk profile allows.",
+            "confidence": 90,
+            "source": "yield_data"
+          },
+          {
+            "type": "neutral",
+            "protocol": "aave",
+            "signal": "Aave governance proposal AIP-482 for reserve factor adjustment is in voting phase — may affect USDC supply rates within 48h.",
+            "confidence": 65,
+            "source": "governance"
+          }
+        ],
+        "narrative": "Market conditions show a 4.1% yield spread across monitored protocols. aave leads at 8.50% APY with $0M TVL. Morpho utilization at 0% suggests moderate lending demand. Overall market conditions favor active rebalancing.",
+        "timestamp": "2026-04-24T18:20:39.494Z"
+      },
+      "riskAssessment": {
+        "protocolScores": [
+          {
+            "protocol": "aave",
+            "overallScore": 84,
+            "factors": {
+              "smartContractRisk": 89,
+              "tvlStability": 79,
+              "auditStatus": 98,
+              "governanceRisk": 90,
+              "concentrationRisk": 65
+            },
+            "reasoning": "Battle-tested lending protocol with multiple audits and 3+ years without major exploits. Decentralized governance."
+          },
+          {
+            "protocol": "morpho",
+            "overallScore": 70,
+            "factors": {
+              "smartContractRisk": 67,
+              "tvlStability": 65,
+              "auditStatus": 82,
+              "governanceRisk": 72,
+              "concentrationRisk": 65
+            },
+            "reasoning": "Peer-to-peer optimization on top of Aave. Audited by Spearbit but newer with semi-centralized admin keys."
+          },
+          {
+            "protocol": "moonwell",
+            "overallScore": 62,
+            "factors": {
+              "smartContractRisk": 59,
+              "tvlStability": 57,
+              "auditStatus": 75,
+              "governanceRisk": 72,
+              "concentrationRisk": 65
+            },
+            "reasoning": "Compound V2 fork on Base. Well-audited codebase but smaller TVL and newer deployment."
+          }
+        ],
+        "portfolioRiskLevel": "medium",
+        "recommendations": [
+          "Reduce exposure to lower-scored protocols.",
+          "Maintain 60%+ allocation to Aave for conservative profiles."
+        ],
+        "reasoning": "Portfolio safety score: 72/100 (medium)."
+      },
+      "strategy": {
+        "id": "8684817b-1f4a-4e12-ad8d-b002ae4b3f70",
+        "name": "Balanced Diversified",
+        "positions": [
+          {
+            "protocol": "aave",
+            "action": "supply",
+            "allocationPercent": 60,
+            "expectedApyBps": 850,
+            "reasoning": "60% to Aave (8.50% APY, safety 84/100)"
+          },
+          {
+            "protocol": "morpho",
+            "action": "supply",
+            "allocationPercent": 40,
+            "expectedApyBps": 443,
+            "reasoning": "40% to Morpho (4.43% APY, peer-to-peer optimization)"
+          }
+        ],
+        "blendedApyBps": 687,
+        "riskScore": 72,
+        "estimatedNetGainUsdc": 0.003921232876712329,
+        "feeCostUsdc": 0.005,
+        "netGainAfterFeeUsdc": -0.0010787671232876713,
+        "shouldExecute": true,
+        "reasoning": "Balanced strategy splits across Aave (60%) and Morpho (40%) for diversified risk-adjusted yield. Blended APY: 6.87%.",
+        "shouldRebalance": true,
+        "targetProtocol": "aave",
+        "deltaApyBps": 687
+      },
+      "executionResult": {
+        "executed": true,
+        "fromProtocol": "idle",
+        "toProtocol": "aave",
+        "amountUsdc": 1000,
+        "arcTxHash": "0xmocktxhash_f7a2bc48",
+        "feeChargedTxHash": "0xmock_nano_1777054839768",
+        "actualGasCost": 0,
+        "timestampMs": 1777054839768
+      },
+      "performanceAttribution": {
+        "realizedApyBps": 687,
+        "projectedApyBps": 687,
+        "alphaVsBenchmarkBps": 87,
+        "attributionByProtocol": [
+          {
+            "protocol": "aave",
+            "contributionBps": 150,
+            "reasoning": "aave contributed 1.50% alpha via 60% allocation at 8.50% APY"
+          },
+          {
+            "protocol": "morpho",
+            "contributionBps": -63,
+            "reasoning": "morpho contributed -0.63% alpha via 40% allocation at 4.43% APY"
+          }
+        ],
+        "totalAlphaGeneratedUsdc": 8.7,
+        "reasoning": "Realized 6.87% APY vs 6.00% benchmark = 0.87% alpha. Top contributor: aave."
+      },
+      "reflexionCritique": null,
+      "reasoningLog": [
+        {
+          "timestamp": "2026-04-24T18:20:38.839Z",
+          "agentId": "market_sentinel",
+          "agentName": "Market Sentinel",
+          "agentIcon": "🔍",
+          "color": "#06b6d4",
+          "message": "Market Sentinel activated — scanning yield markets...",
+          "type": "action"
+        },
+        {
+          "timestamp": "2026-04-24T18:20:38.840Z",
+          "agentId": "market_sentinel",
+          "agentName": "Market Sentinel",
+          "agentIcon": "🔍",
+          "color": "#06b6d4",
+          "message": "Initiating market scan across Aave, Morpho, and Moonwell...",
+          "type": "thinking"
+        },
+        {
+          "timestamp": "2026-04-24T18:20:38.906Z",
+          "agentId": "market_sentinel",
+          "agentName": "Market Sentinel",
+          "agentIcon": "🔍",
+          "color": "#06b6d4",
+          "message": "aave: 8.50% APY | TVL: $0M | Utilization: 0%",
+          "type": "thinking"
+        },
+        {
+          "timestamp": "2026-04-24T18:20:38.926Z",
+          "agentId": "market_sentinel",
+          "agentName": "Market Sentinel",
+          "agentIcon": "🔍",
+          "color": "#06b6d4",
+          "message": "morpho: 4.43% APY | TVL: $0M | Utilization: 0%",
+          "type": "thinking"
+        },
+        {
+          "timestamp": "2026-04-24T18:20:39.279Z",
+          "agentId": "market_sentinel",
+          "agentName": "Market Sentinel",
+          "agentIcon": "🔍",
+          "color": "#06b6d4",
+          "message": "moonwell: 7.50% APY | TVL: $0M | Utilization: 0%",
+          "type": "thinking"
+        },
+        {
+          "timestamp": "2026-04-24T18:20:39.279Z",
+          "agentId": "market_sentinel",
+          "agentName": "Market Sentinel",
+          "agentIcon": "🔍",
+          "color": "#06b6d4",
+          "message": "Analyzing market patterns, TVL trends, and governance signals...",
+          "type": "thinking"
+        },
+        {
+          "timestamp": "2026-04-24T18:20:39.494Z",
+          "agentId": "market_sentinel",
+          "agentName": "Market Sentinel",
+          "agentIcon": "🔍",
+          "color": "#06b6d4",
+          "message": "🟢 4.1% yield spread detected between aave and morpho. Rebalancing opportunity exists if risk profile allows.",
+          "type": "decision"
+        },
+        {
+          "timestamp": "2026-04-24T18:20:39.494Z",
+          "agentId": "market_sentinel",
+          "agentName": "Market Sentinel",
+          "agentIcon": "🔍",
+          "color": "#06b6d4",
+          "message": "🟡 Aave governance proposal AIP-482 for reserve factor adjustment is in voting phase — may affect USDC supply rates within 48h.",
+          "type": "decision"
+        },
+        {
+          "timestamp": "2026-04-24T18:20:39.494Z",
+          "agentId": "market_sentinel",
+          "agentName": "Market Sentinel",
+          "agentIcon": "🔍",
+          "color": "#06b6d4",
+          "message": "Market narrative: Market conditions show a 4.1% yield spread across monitored protocols. aave leads at 8.50% APY with $0M TVL. Morpho utilization at 0% suggests moderate lending demand. Overall market conditions favor active rebalancing.",
+          "type": "decision"
+        },
+        {
+          "timestamp": "2026-04-24T18:20:39.494Z",
+          "agentId": "risk_analyst",
+          "agentName": "Risk Analyst",
+          "agentIcon": "📊",
+          "color": "#f59e0b",
+          "message": "Evaluating protocol health and counterparty risk...",
+          "type": "thinking"
+        },
+        {
+          "timestamp": "2026-04-24T18:20:39.628Z",
+          "agentId": "risk_analyst",
+          "agentName": "Risk Analyst",
+          "agentIcon": "📊",
+          "color": "#f59e0b",
+          "message": "🟡 aave: 84/100 — Battle-tested lending protocol with multiple audits and 3+ years without major exploits. Decentralized governance.",
+          "type": "decision"
+        },
+        {
+          "timestamp": "2026-04-24T18:20:39.628Z",
+          "agentId": "risk_analyst",
+          "agentName": "Risk Analyst",
+          "agentIcon": "📊",
+          "color": "#f59e0b",
+          "message": "🔴 morpho: 70/100 — Peer-to-peer optimization on top of Aave. Audited by Spearbit but newer with semi-centralized admin keys.",
+          "type": "decision"
+        },
+        {
+          "timestamp": "2026-04-24T18:20:39.628Z",
+          "agentId": "risk_analyst",
+          "agentName": "Risk Analyst",
+          "agentIcon": "📊",
+          "color": "#f59e0b",
+          "message": "🔴 moonwell: 62/100 — Compound V2 fork on Base. Well-audited codebase but smaller TVL and newer deployment.",
+          "type": "decision"
+        },
+        {
+          "timestamp": "2026-04-24T18:20:39.628Z",
+          "agentId": "risk_analyst",
+          "agentName": "Risk Analyst",
+          "agentIcon": "📊",
+          "color": "#f59e0b",
+          "message": "Portfolio risk: MEDIUM",
+          "type": "decision"
+        },
+        {
+          "timestamp": "2026-04-24T18:20:39.628Z",
+          "agentId": "strategy_architect",
+          "agentName": "Strategy Architect",
+          "agentIcon": "🧠",
+          "color": "#8b5cf6",
+          "message": "Designing strategy for balanced profile with $1000 USDC...",
+          "type": "thinking"
+        },
+        {
+          "timestamp": "2026-04-24T18:20:39.628Z",
+          "agentId": "strategy_architect",
+          "agentName": "Strategy Architect",
+          "agentIcon": "🧠",
+          "color": "#8b5cf6",
+          "message": "Considering 3 protocols, 2 market signals, 3 risk assessments...",
+          "type": "thinking"
+        },
+        {
+          "timestamp": "2026-04-24T18:20:39.767Z",
+          "agentId": "strategy_architect",
+          "agentName": "Strategy Architect",
+          "agentIcon": "🧠",
+          "color": "#8b5cf6",
+          "message": "Strategy: \"Balanced Diversified\" — 60% aave, 40% morpho",
+          "type": "decision"
+        },
+        {
+          "timestamp": "2026-04-24T18:20:39.767Z",
+          "agentId": "strategy_architect",
+          "agentName": "Strategy Architect",
+          "agentIcon": "🧠",
+          "color": "#8b5cf6",
+          "message": "Blended APY: 6.87% | Net gain: $-0.001079 | Execute: YES",
+          "type": "action"
+        },
+        {
+          "timestamp": "2026-04-24T18:20:39.767Z",
+          "agentId": "compliance_guardian",
+          "agentName": "Compliance Guardian",
+          "agentIcon": "🛡️",
+          "color": "#10b981",
+          "message": "Validating strategy against net-gain guard and risk limits...",
+          "type": "thinking"
+        },
+        {
+          "timestamp": "2026-04-24T18:20:39.767Z",
+          "agentId": "compliance_guardian",
+          "agentName": "Compliance Guardian",
+          "agentIcon": "🛡️",
+          "color": "#10b981",
+          "message": "✅ Strategy approved — net gain $-0.001079 exceeds fee threshold",
+          "type": "action"
+        },
+        {
+          "timestamp": "2026-04-24T18:20:39.768Z",
+          "agentId": "executor",
+          "agentName": "Execution Planner",
+          "agentIcon": "⚡",
+          "color": "#f97316",
+          "message": "✅ Executed: idle → aave ($1000 USDC)",
+          "type": "action"
+        },
+        {
+          "timestamp": "2026-04-24T18:20:39.769Z",
+          "agentId": "performance_analyst",
+          "agentName": "Performance Analyst",
+          "agentIcon": "📈",
+          "color": "#3b82f6",
+          "message": "Analyzing cycle performance and decomposing alpha sources...",
+          "type": "thinking"
+        },
+        {
+          "timestamp": "2026-04-24T18:20:39.769Z",
+          "agentId": "performance_analyst",
+          "agentName": "Performance Analyst",
+          "agentIcon": "📈",
+          "color": "#3b82f6",
+          "message": "Alpha vs benchmark: +0.87% — Realized 6.87% APY vs 6.00% benchmark = 0.87% alpha. Top contributor: aave.",
+          "type": "decision"
+        }
+      ],
+      "scanResults": [
+        {
+          "protocol": "aave",
+          "asset": "USDC",
+          "chain": "base",
+          "supplyApyBps": 850,
+          "tvlUsd": 0,
+          "utilizationRate": 0,
+          "queryCostUsdc": 0.001,
+          "arcTxHash": "0xmockx402hash_fallback_1777054838897",
+          "queriedAt": "2026-04-24T18:20:38.906Z"
+        },
+        {
+          "protocol": "morpho",
+          "asset": "USDC",
+          "chain": "base",
+          "supplyApyBps": 443,
+          "tvlUsd": 0,
+          "utilizationRate": 0,
+          "queryCostUsdc": 0.001,
+          "arcTxHash": "0xmockx402hash_fallback_1777054838923",
+          "queriedAt": "2026-04-24T18:20:38.926Z"
+        },
+        {
+          "protocol": "moonwell",
+          "asset": "USDC",
+          "chain": "base",
+          "supplyApyBps": 750,
+          "tvlUsd": 0,
+          "utilizationRate": 0,
+          "queryCostUsdc": 0.001,
+          "arcTxHash": "0xmockx402hash_fallback_1777054839011",
+          "queriedAt": "2026-04-24T18:20:39.279Z"
+        }
+      ],
+      "optimizerDecision": {
+        "shouldRebalance": true,
+        "targetProtocol": "aave",
+        "currentApyBps": 0,
+        "targetApyBps": 687,
+        "deltaApyBps": 687,
+        "estimatedNetGainUsdc": 0.003921232876712329,
+        "feeCostUsdc": 0.005,
+        "netGainAfterFeeUsdc": -0.0010787671232876713,
+        "reasoning": "Balanced strategy splits across Aave (60%) and Morpho (40%) for diversified risk-adjusted yield. Blended APY: 6.87%.",
+        "promptVersion": 0
+      },
+      "totalFeePaidUsdc": 0.003,
+      "userFeeChargedUsdc": 0.005,
+      "completedAt": "2026-04-24T18:20:39.769Z"
+    }
+  ],
+  "payments": [
+    {
+      "fromAgentId": "0x1111111111111111111111111111111111111111",
+      "toAddress": "0x9999999999999999999999999999999999999999",
+      "amountUsdc": 0.001,
+      "purpose": "yield_query",
+      "arcTxHash": "0xmockx402hash_fallback_1777054838897",
+      "cycleId": "84a2523a-d69c-423e-b5dd-a953e3ea04f2",
+      "id": "66049241-f5a8-469d-bc54-d404c3e1bd9f",
+      "settledAt": "2026-04-24T18:20:38.906Z"
+    },
+    {
+      "fromAgentId": "0x1111111111111111111111111111111111111111",
+      "toAddress": "0x9999999999999999999999999999999999999999",
+      "amountUsdc": 0.001,
+      "purpose": "yield_query",
+      "arcTxHash": "0xmockx402hash_fallback_1777054838923",
+      "cycleId": "84a2523a-d69c-423e-b5dd-a953e3ea04f2",
+      "id": "a834b686-98bb-494c-a6b6-72924a7e5d23",
+      "settledAt": "2026-04-24T18:20:38.926Z"
+    },
+    {
+      "fromAgentId": "0x1111111111111111111111111111111111111111",
+      "toAddress": "0x9999999999999999999999999999999999999999",
+      "amountUsdc": 0.001,
+      "purpose": "yield_query",
+      "arcTxHash": "0xmockx402hash_fallback_1777054839011",
+      "cycleId": "84a2523a-d69c-423e-b5dd-a953e3ea04f2",
+      "id": "c715cb69-cd23-49e8-88ae-36cdb8ea6326",
+      "settledAt": "2026-04-24T18:20:39.279Z"
+    }
+  ],
+  "reflexionMemory": {
+    "version": 1,
+    "critique": "The agent exhibited a pattern of excessive rebalancing for marginal APY gains, resulting in a high false rebalance rate (35%). It frequently chased transient APY spikes without adequately factoring in gas costs or the time required to recoup those costs, leading to an excessively high fee-to-value ratio (0.02). The diagnosis reveals that the current prompt lacks strict constraints on break-even time horizons and minimum APY thresholds relative to transaction costs.",
+    "improvedSystemPrompt": "You are a highly analytical DeFi Yield Optimizer Agent. Your primary objective is to maximize net yield across whitelisted protocols while strictly minimizing gas attrition.\n\n[CRITICAL RULE 1] Never bridge assets to unapproved chains or interact with non-whitelisted smart contracts.\n[CRITICAL RULE 2] Always retain a minimum of 5% of the portfolio in native tokens to cover future gas fees.\n[CRITICAL RULE 3] Never execute a rebalance if the portfolio's health factor drops below 1.5.\n\n[JUDGMENT GUIDANCE - REVISED]\n1. Break-Even Calculation: ALWAYS calculate the break-even time for any proposed rebalance. Do NOT execute a rebalance if the break-even time (Total Gas Cost / Projected Daily Extra Yield) exceeds 14 days.\n2. Minimum Thresholds: Ignore APY delta fluctuations of less than 100 basis points (1.0%) unless the principal capital is large enough to cover the transaction gas fees within a 7-day period.\n3. Transient Yield Spikes: Do not chase short-term liquidity mining spikes or volatile utilization rates. You must verify that the target protocol has sustained its higher APY for at least 24 hours prior to initiating a position move.\n4. Strict Fee-to-Value Constraint: Automatically reject any rebalance action where the estimated transaction gas fee exceeds 0.5% of the principal amount being reallocated.",
+    "performanceMetrics": {
+      "avgDeltaApyBpsAchieved": 45,
+      "falseRebalanceRate": 0.35,
+      "feeToValueRatio": 0.02
+    },
+    "updatedAt": "2026-04-24T18:20:56.670Z"
+  },
+  "agentWallets": {
+    "scannerAddress": "0x1111111111111111111111111111111111111111",
+    "optimizerAddress": "0x2222222222222222222222222222222222222222",
+    "executorAddress": "0x3333333333333333333333333333333333333333"
+  }
+}

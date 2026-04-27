@@ -30,6 +30,8 @@ export async function POST(req: NextRequest) {
       currentApy: 0,
       riskTolerance: riskTolerance || 'balanced',
       agentActive: false,
+      zeltaBalance: 0,
+      zeltaStaked: 0,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
     });

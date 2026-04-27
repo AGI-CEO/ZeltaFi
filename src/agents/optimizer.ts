@@ -75,9 +75,11 @@ ${scanResults.map(p => `  ${p.protocol}: ${(p.supplyApyBps / 100).toFixed(2)}% A
   const bestYield = scanResults.reduce((best, p) => p.supplyApyBps > best.supplyApyBps ? p : best, scanResults[0]);
   const deltaApyBps = bestYield.supplyApyBps - user.currentApy;
   const estimatedNetGain = (deltaApyBps / 10000) * user.depositAmountUsdc * (cycleHours / 8760);
+  
+  const isInitialRouting = user.currentProtocol === 'idle';
 
   // Server-side override / deterministic fallback
-  if (estimatedNetGain <= feeAmount || (user.currentProtocol !== 'idle' && user.currentProtocol === bestYield.protocol)) {
+  if (!isInitialRouting && (estimatedNetGain <= feeAmount || (user.currentProtocol !== 'idle' && user.currentProtocol === bestYield.protocol))) {
     return {
       shouldRebalance: false,
       targetProtocol: null,
